@@ -22,7 +22,13 @@ class App extends Component {
     // console.log(pets);
   }
 
-
+  selectPet = (id) => {
+    this.state.petList.forEach( (pet) => {
+      if (pet.id === id) {
+        this.setState ({currentPet: pet})
+      }
+    });
+  }
 
   render () {
     const { currentPet } = this.state;
@@ -32,13 +38,20 @@ class App extends Component {
         <header className="app-header">
           <h1>Ada Pets</h1>
         </header>
+
         <section className="search-bar-wrapper">
           { /* Wave 4:  Place to add the SearchBar component */}
           <SearchBar />
         </section>
+        
         { /* Wave 1:  Where Pet Details should appear */}
+       {currentPet ? <PetDetails currentPet= {this.state.currentPet}/> : ''}
         <section className="pet-list-wrapper">
-          <PetList pets= {this.state.petList} />
+          <PetList 
+            pets= {this.state.petList} 
+            /* TODO Add callback props */
+            onSelectPetCallback={this.selectPet}
+          />
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */}

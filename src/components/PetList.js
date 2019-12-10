@@ -23,6 +23,7 @@ const PetList = (props) => {
         species = {pet.species}
         about = {pet.about}
         location = {pet.location}
+        onSelectPetCallback = {props.onSelectPetCallback}
       />
       )
     }
