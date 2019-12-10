@@ -24,10 +24,10 @@ const PetList = (props) => {
         about = {pet.about}
         location = {pet.location}
         onSelectPetCallback = {props.onSelectPetCallback}
+        onHidePetCallback = {props.onHidePetCallback}
       />
       )
-    }
-    )
+    })
 
 
   return (
@@ -40,6 +40,7 @@ const PetList = (props) => {
 PetList.propTypes = {
   pets: PropTypes.array.isRequired,
   onSelectPet: PropTypes.func,
+  onHidePet: PropTypes.func,
 };
 
 export default PetList;

@@ -16,18 +16,33 @@ class App extends Component {
     super(props);
 
     this.state = {
-      petList: pets,
+      // petList: pets,
       currentPet: undefined,
+      activePets: pets,
     };
     // console.log(pets);
   }
 
   selectPet = (id) => {
-    this.state.petList.forEach( (pet) => {
+    this.state.activePets.forEach( (pet) => {
       if (pet.id === id) {
         this.setState ({currentPet: pet})
       }
     });
+  }
+
+  hidePet = (id) => {
+    const allPets = this.state.activePets
+    let filtered = []
+    allPets.forEach( (pet) => {
+      if (pet.id != id) {
+        filtered.push(pet)
+      }
+      else this.setState({currentPet: undefined})
+    })
+
+    this.setState ({activePets: filtered })
+    
   }
 
   render () {
@@ -43,19 +58,26 @@ class App extends Component {
           { /* Wave 4:  Place to add the SearchBar component */}
           <SearchBar />
         </section>
-        
+
         { /* Wave 1:  Where Pet Details should appear */}
        {currentPet ? <PetDetails currentPet= {this.state.currentPet}/> : ''}
+
+
         <section className="pet-list-wrapper">
           <PetList 
-            pets= {this.state.petList} 
+            pets= {this.state.activePets} 
             /* TODO Add callback props */
             onSelectPetCallback={this.selectPet}
+            onHidePetCallback={this.hidePet}
           />
         </section>
+
+
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */}
         </section>
+
+
       </main>
     );
   }

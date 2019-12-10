@@ -15,19 +15,26 @@ const PetCard = (props) => {
       <section className="pet-card--header">
 
         {speciesEmoji(species)} {id} - {name}
+
         <button
           className="btn btn-primary pet-card--select-pet-btn"
+
           onClick={ () => {props.onSelectPetCallback(props.id)}}
         >
           Select
         </button>
+
+
         <button
           type="button"
           className="btn btn-danger pet-card--remove-btn"
           aria-label="Remove"
+          onClick={ () => {props.onHidePetCallback(props.id)}}
         >
           Remove
         </button>
+
+
       </section>
       <section className="pet-card--body">
         {about.length > 128 ? `${ about.substring(0, 128) }...` : about}
